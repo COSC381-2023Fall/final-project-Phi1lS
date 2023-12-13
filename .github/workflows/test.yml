@@ -17,3 +17,5 @@ jobs:
       - run: python3 --version
       - run: pytest --version
       - run: pytest
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}

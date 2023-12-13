@@ -15,12 +15,17 @@ API method that finds movie reviews/commentary through YouTube Data API.
 API method that gets a full description of a movie review.
 API method that gets reviews in a different language.
 
+Test methods use mocker to avoid making actual API calls.
+
 ## Usage
 Install FastAPI and Uvicorn. The command using pip is the following:
 pip install fastapi uvicorn
 
 If you would like to test this applicaton, you can also install pytest and pytest-mock using the following command:
 pip install pytest pytest-mock
+
+To test the YouTube API methods, you need the Google API. To install it, you can run this command:
+pip install --upgrade google-api-python-client
 
 then run the FastAPI application using uvicorn using the follow command:
 uvicorn main:app --reload
@@ -30,6 +35,8 @@ to go to SwaggerUI, go to http://127.0.0.1:8000/docs
 
 To test the application using pytest, use the following command:
 pytest
+
+PLEASE NOTE: For now, I am keeping my YouTube API Key in a .env file locally on my PC as to avoid any potential security issues. I have emailed the professor to ask if this is okay to do instead of putting my API key on my config.py. If it turns out that this is not allowed, this will change in future issues. For now, you need to provide your own YouTube API Key.
 
 ## Expected Input
 HelloWorld API takes no Input
