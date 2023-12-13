@@ -45,15 +45,15 @@ Each API has a different expected output.
 HelloWorld API outputs "message: Hello World"
 
 API method that finds movie reviews/commentary through YouTube Data API outputs in this format:
-"id": <video id>
-"title": <title of video>
-"description": <description of video>
+"id": video id
+"title": title of video
+"description": description of video
 
 API method that gets a full description of a movie review outputs in this format:
-"description": <full description of video>
+"description": full description of video
 
 
 API method that gets reviews in a different language outputs in this format. Note that it is the same format as the method that finds movie reviews/commentary, only in a different language:
-"id": <video id>
-"title": <title of video>
-"description": <description of video>
+"id": video id
+"title": title of video
+"description": description of video
