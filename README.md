@@ -19,11 +19,17 @@ API method that gets reviews in a different language.
 Install FastAPI and Uvicorn. The command using pip is the following:
 pip install fastapi uvicorn
 
+If you would like to test this applicaton, you can also install pytest and pytest-mock using the following command:
+pip install pytest pytest-mock
+
 then run the FastAPI application using uvicorn using the follow command:
 uvicorn main:app --reload
 
 This will serve your API on http://127.0.0.1:8000
 to go to SwaggerUI, go to http://127.0.0.1:8000/docs
+
+To test the application using pytest, use the following command:
+pytest
 
 ## Expected Input
 HelloWorld API takes no Input
