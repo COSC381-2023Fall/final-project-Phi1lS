@@ -1,0 +1,19 @@
+name: Run Pytest
+
+on: push
+
+jobs:
+  test:
+    name: ${{ github.actor }} is testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - run: python3 -m pip install --upgrade pip
+      - run: python3 -m pip install pytest pytest-mock
+      - run: pip install -r requirements.txt
+      - run: python3 --version
+      - run: pytest --version
+      - run: pytest
