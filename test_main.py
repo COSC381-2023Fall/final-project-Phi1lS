@@ -45,3 +45,23 @@ def test_video_description_no_description():
     # Assert the response status code and content
     assert response.status_code == 200
     assert response.json() == {'description': 'Description not found.'}
+
+@pytest.fixture
+def mock_search_movie_reviews_in_language(mocker):
+    mock = mocker.patch('main.search_movie_reviews_in_language', autospec=True)
+    mock.return_value = [
+        {
+            'id': 'video_id_1',
+            'title': 'Review 1',
+            'description': 'Description of review 1'
+        }
+    ]
+    return mock
+
+def test_get_movie_reviews_in_language(mock_search_movie_reviews_in_language):
+    language = 'es'
+    movie_name = 'test_movie'
+    response = client.get(f'/moviereviews/{language}/{movie_name}')
+    assert response.status_code == 200
+    assert response.json() == mock_search_movie_reviews_in_language.return_value
+    mock_search_movie_reviews_in_language.assert_called_once_with(language, movie_name)

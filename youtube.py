@@ -47,3 +47,41 @@ def get_video_description(video_id):
         description = 'Description not found.'
 
     return description
+
+# Method that translates given movie name, puts it into search query, and returns id, title, and description
+def search_movie_reviews_in_language(language, movie_name):
+    translate = build('translate', 'v2', developerKey=YOUTUBE_API_KEY)
+
+    translate_request = translate.translations().list(
+        source='en',
+        target=language,
+        q=[movie_name]
+    )
+    translate_response = translate_request.execute()
+    translated_movie_name = translate_response['translations'][0]['translatedText']
+
+    youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
+    search_request = youtube.search().list(
+        part='snippet',
+        q=f'{translated_movie_name} review',
+        type='video',
+        maxResults=10,
+        order='relevance',
+        safeSearch='moderate',
+        relevanceLanguage=language
+    )
+    search_response = search_request.execute()
+
+    videos = []
+    for item in search_response.get('items', []):
+        video_id = item['id']['videoId']
+        video_title = item['snippet']['title']
+        video_description = item['snippet']['description']
+        
+        videos.append({
+            'id': video_id,
+            'title': video_title,
+            'description': video_description
+        })
+    
+    return videos

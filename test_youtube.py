@@ -1,6 +1,6 @@
 import pytest
 from googleapiclient.discovery import build
-from youtube import search_movie_reviews, get_video_description
+from youtube import search_movie_reviews, get_video_description, search_movie_reviews_in_language
 
 def test_search_movie_reviews(mocker):
     # Mock the build function to return a mock object
@@ -41,3 +41,29 @@ def test_get_video_description_no_description():
 
     # Assert that the description is empty
     assert description == 'Description not found.'
+
+def test_search_movie_reviews_in_language(mocker):
+    # Mock the build function to return a mock object
+    mock_translate_build = mocker.patch('googleapiclient.discovery.build')
+
+    # Mock for the YouTube API response with 10 items
+    youtube_response = {
+        'items': [
+            {
+                'id': {'videoId': f'video{i}'},
+                'snippet': {
+                    'title': f'Review {i}',
+                    'description': f'Description of review {i}'
+                }
+            } for i in range(10)  # Generating 10 items for the mock response
+        ]
+    }
+
+    # Mock the execute method to return the youtube_response
+    mock_translate_build().search().list().execute.return_value = youtube_response
+
+    # Call search_movie_reviews function with a test query
+    results = search_movie_reviews_in_language('es', 'Harry Potter')
+
+    # Assert the expected outcomes from the function
+    assert len(results) == 10  # Now it checks if ten results are returned
