@@ -38,6 +38,13 @@ pytest
 
 PLEASE NOTE: For now, I am keeping my YouTube API Key in a .env file locally on my PC as to avoid any potential security issues. I have emailed the professor to ask if this is okay to do instead of putting my API key on my config.py. If it turns out that this is not allowed, this will change in future issues. For now, you need to provide your own YouTube API Key.
 
+Here is an example .env file:
+import os
+from dotenv import load_dotenv
+load_dotenv()  # This loads the .env file at the root of the project
+
+YOUTUBE_API_KEY = YOUR_API_KEY_HERE
+
 ## Expected Input
 HelloWorld API takes no Input
 
