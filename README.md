@@ -82,5 +82,3 @@ API method that gets reviews in a different language outputs in this format. Not
 "id": video id
 "title": title of video
 "description": description of video
-
-PLEASE NOTE: Putting in just a proper noun will oftentimes give a search result in your native language due to the nature of YouTube's algorithm. For example, "harry potter" will likely just give you English search results. To fix this, try searching "harry potter review" instead. Languages that don't use the latin alphabet, such as Chinese or Russian, will not have this issue.
