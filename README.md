@@ -45,6 +45,9 @@ load_dotenv()  # This loads the .env file at the root of the project
 
 YOUTUBE_API_KEY = YOUR_API_KEY_HERE
 
+PLEASE NOTE: In the case that any aspect of the program is not working, I encourage you to install all dependencies from the requirements.txt with this pip command:
+pip install -r requirements.txt 
+
 ## Expected Input
 HelloWorld API takes no Input
 
