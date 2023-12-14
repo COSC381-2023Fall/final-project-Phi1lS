@@ -55,15 +55,16 @@ def search_movie_reviews_in_language(language, movie_name):
     translate_request = translate.translations().list(
         source='en',
         target=language,
-        q=[movie_name]
+        q=[movie_name, 'review']
     )
     translate_response = translate_request.execute()
     translated_movie_name = translate_response['translations'][0]['translatedText']
+    translated_review_keyword = translate_response['translations'][1]['translatedText']
 
     youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
     search_request = youtube.search().list(
         part='snippet',
-        q=f'{translated_movie_name} review',
+        q=f'{translated_movie_name} {translated_review_keyword}',
         type='video',
         maxResults=10,
         order='relevance',
