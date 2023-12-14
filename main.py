@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from typing import List, Dict
-from youtube import search_movie_reviews, get_video_description
+from youtube import search_movie_reviews, get_video_description, search_movie_reviews_in_language
 
 app = FastAPI()
 
@@ -27,5 +27,14 @@ async def video_description(video_id: str):
             return {'description': description}
         else:
             raise HTTPException(status_code=404, detail='Description not found')
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Get reviews in a different language method
+@app.get('/moviereviews/{language}/{movie_name}', response_model=List[dict])
+async def get_movie_reviews_in_language(language: str, movie_name: str):
+    try:
+        translated_reviews = search_movie_reviews_in_language(language, movie_name)
+        return translated_reviews
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
