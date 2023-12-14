@@ -36,7 +36,7 @@ to go to SwaggerUI, go to http://127.0.0.1:8000/docs
 To test the application using pytest, use the following command:
 pytest
 
-PLEASE NOTE: For now, I am keeping my YouTube API Key in a .env file locally on my PC as to avoid any potential security issues. I have emailed the professor to ask if this is okay to do instead of putting my API key on my config.py. If it turns out that this is not allowed, this will change in future issues. For now, you need to provide your own YouTube API Key.
+PLEASE NOTE: I am keeping my YouTube API Key in a .env file locally on my PC as to avoid any potential security issues. You need to provide your own YouTube API Key.
 
 Here is an example .env file:
 import os
@@ -54,10 +54,12 @@ API method that gets a full description of a movie review takes a string that re
 
 API method that gets reviews in a different language takes two parameters: a string that represents the language and a string that represents the movie name.
 To specify a language, use iso639-1 two letter language codes, except for zh-Hans for simplified Chinese and zh-Hant for traditional Chinese.
-zh-Hant for traditional Chinese. Example: en
+zh-Hant for traditional Chinese. Example: ru
 
 ## Program Operation
 All API methods, excluding the HelloWorld API, heavily utilize the YouTube Data API to grab video names and descriptions.
+
+The API method that gets reviews in a different language also uses the Google Cloud Translation API to translate the search term.
 
 ## Output Format
 Each API has a different expected output.
